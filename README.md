@@ -29,6 +29,7 @@ $data = [
         'callable' => static fn (): string => 'Hey!',
         'instance' => new stdClass(),
         'mixed' => null,
+        'array' => ['a' => 'b'],
     ],
 ];
 
@@ -39,6 +40,7 @@ $value = Dot::string('data.string', $data); // Goats
 $value = Dot::callable('data.callable', $data); // function
 $value = Dot::instanceOf('data.instance', $data, stdClass::class); // object<stdClass>
 $value = Dot::valueAt('data.mixed'); // mixed
+$value = Dot::array('data.array'); // ['a' => 'b']
 
 $value = Dot::string('nope.not-there', $data); // Exception: MissingKey
 $value = Dot::string('data.float', $data); // Exception: InvalidValue

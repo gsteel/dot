@@ -33,6 +33,10 @@ class DotTest extends TestCase
                     'instance' => new Something(),
                     'callable' => static fn (): string => 'Hey!',
                     'callable-array' => [Something::class, 'get'],
+                    'array' => [
+                        0 => 'a',
+                        1 => 'b',
+                    ],
                     'c' => [
                         'd' => [
                             'value' => 'value',
@@ -357,5 +361,35 @@ class DotTest extends TestCase
 
         self::assertSame($expect, Dot::callableDefault('a.b.callable', $this->input, $default));
         self::assertSame($default, Dot::callableDefault('a.b.nope', $this->input, $default));
+    }
+
+    public function testArray(): void
+    {
+        $expect = [0 => 'a', 1 => 'b'];
+        self::assertSame($expect, Dot::array('a.b.array', $this->input));
+    }
+
+    public function testIncorrectArrayType(): void
+    {
+        $this->expectException(InvalidValue::class);
+        $this->expectExceptionMessage('The value at "a.b.bool" was expected to be "array", but "boolean" was found');
+        Dot::array('a.b.bool', $this->input);
+    }
+
+    public function testArrayOrNull(): void
+    {
+        $expect = [0 => 'a', 1 => 'b'];
+        self::assertSame($expect, Dot::arrayOrNull('a.b.array', $this->input));
+        self::assertSame($expect, Dot::arrayOrNull('a/b/array', $this->input, '/'));
+        self::assertNull(Dot::arrayOrNull('a.b.int', $this->input));
+        self::assertNull(Dot::arrayOrNull('a.b.not-there', $this->input));
+    }
+
+    public function testArrayDefault(): void
+    {
+        $expect = [0 => 'a', 1 => 'b'];
+        $default = ['foo' => 'bar'];
+        self::assertSame($expect, Dot::arrayDefault('a.b.array', $this->input, $default));
+        self::assertSame($default, Dot::arrayDefault('a.b.nope', $this->input, $default));
     }
 }
