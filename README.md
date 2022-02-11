@@ -1,5 +1,11 @@
 # Dot
 
+[![codecov](https://codecov.io/gh/gsteel/dot/branch/master/graph/badge.svg?token=TjLKu5FkjA)](https://codecov.io/gh/gsteel/dot)
+[![psalm coverage](https://shepherd.dev/github/gsteel/dot/coverage.svg)](https://shepherd.dev/github/gsteel/dot)
+[![psalm level](https://shepherd.dev/github/gsteel/dot/level.svg)](https://shepherd.dev/github/gsteel/dot)
+
+
+
 Retrieve strongly typed values from deeply nested arrays.
 
 This library will not set any values or manipulate data structures in any way. It is purely a way to retrieve information.
