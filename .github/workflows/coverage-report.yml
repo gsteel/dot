@@ -1,4 +1,4 @@
-name: "Continuous Integration"
+name: "Coverage Report"
 
 on:
   pull_request:
