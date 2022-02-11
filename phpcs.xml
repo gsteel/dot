@@ -5,12 +5,12 @@
     <arg name="parallel" value="80"/>
     <arg name="cache" value=".php_cs.cache"/>
     <arg name="colors"/>
+    <arg value="ps" />
 
 
     <!-- Paths to check -->
     <file>src</file>
     <file>test</file>
-    <file>frontend/types/src</file>
 
     <!-- Inherit rules from Doctrine Coding Standard -->
     <rule ref="Doctrine" />
