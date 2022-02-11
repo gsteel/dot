@@ -207,6 +207,47 @@ final class Dot
         return self::callableOrNull($path, $array, $pathDelimiter) ?: $default;
     }
 
+    /**
+     * @param array<array-key, mixed> $array
+     *
+     * @return array<array-key, mixed>
+     */
+    public static function array(string $path, array $array, string $pathDelimiter = '.'): array
+    {
+        $value = self::valueAt($path, $array, $pathDelimiter);
+        if (! is_array($value)) {
+            throw InvalidValue::for($path, 'array', $value);
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param array<array-key, mixed> $array
+     *
+     * @return array<array-key, mixed>|null
+     */
+    public static function arrayOrNull(string $path, array $array, string $pathDelimiter = '.'): ?array
+    {
+        $value = self::valueOrNull($path, $array, $pathDelimiter);
+        if (! is_array($value)) {
+            return null;
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param array<array-key, mixed> $array
+     * @param array<array-key, mixed> $default
+     *
+     * @return array<array-key, mixed>
+     */
+    public static function arrayDefault(string $path, array $array, array $default, string $pathDelimiter = '.'): array
+    {
+        return self::arrayOrNull($path, $array, $pathDelimiter) ?: $default;
+    }
+
     /** @param array<array-key, mixed> $array */
     public static function valueAt(string $path, array $array, string $pathDelimiter = '.'): mixed
     {
