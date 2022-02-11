@@ -1,0 +1,16 @@
+{
+    "extensions": [
+        "pcov"
+    ],
+    "ini": [
+        "pcov.enabled=1"
+    ],
+    "additional_checks": [
+        {
+            "name": "Coverage",
+            "job": {
+                "command": "vendor/bin/phpunit --coverage-clover coverage.xml"
+            }
+        }
+    ]
+}
