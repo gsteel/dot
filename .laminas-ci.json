@@ -10,6 +10,7 @@
         {
             "name": "Coverage",
             "job": {
+                "php": "8.0",
                 "command": "vendor/bin/phpunit --coverage-clover coverage.xml"
             }
         }
