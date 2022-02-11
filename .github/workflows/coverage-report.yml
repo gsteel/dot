@@ -1,0 +1,46 @@
+name: "Continuous Integration"
+
+on:
+  pull_request:
+  push:
+    branches:
+    tags:
+
+jobs:
+  run-tests:
+    name: PHPUnit on ${{ matrix.php-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['8.0', '8.1', '8.2']
+        include:
+          - php-version: '8.2'
+            composer-options: "--ignore-platform-reqs"
+
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v2
+
+      - name: "Setup PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: ${{ env.php_extensions }}
+          coverage: pcov
+          ini-values: pcov.enabled=1
+
+      - uses: "ramsey/composer-install@2.1.0"
+        with:
+          composer-options: "${{ matrix.composer-options }}"
+
+      - name: "Run Tests"
+        run: php ./vendor/bin/phpunit --coverage-clover=coverage.xml
+
+      - name: "Upload Coverage to CodeCov"
+        uses: codecov/codecov-action@v2.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          fail_ci_if_error: false
