@@ -1,5 +1,5 @@
 # Dot
-
+[![Continuous Integration](https://github.com/gsteel/dot/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/gsteel/dot/actions/workflows/continuous-integration.yml)
 [![codecov](https://codecov.io/gh/gsteel/dot/branch/master/graph/badge.svg?token=TjLKu5FkjA)](https://codecov.io/gh/gsteel/dot)
 [![psalm coverage](https://shepherd.dev/github/gsteel/dot/coverage.svg)](https://shepherd.dev/github/gsteel/dot)
 [![psalm level](https://shepherd.dev/github/gsteel/dot/level.svg)](https://shepherd.dev/github/gsteel/dot)
