@@ -5,6 +5,7 @@
     "ini": [
         "pcov.enabled=1"
     ],
+    "stablePHP": "8.0",
     "additional_checks": [
         {
             "name": "Coverage",
