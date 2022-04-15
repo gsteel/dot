@@ -11,7 +11,8 @@ use function sprintf;
 
 final class InvalidValue extends UnexpectedValueException
 {
-    public static function for(string $path, string $expected, mixed $value): self
+    /** @param mixed $value */
+    public static function for(string $path, string $expected, $value): self
     {
         return new self(sprintf(
             'The value at "%s" was expected to be "%s", but "%s" was found',
