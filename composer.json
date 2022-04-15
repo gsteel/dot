@@ -30,7 +30,7 @@
         }
     },
     "require": {
-        "php": "~8.0 || ~8.1"
+        "php": "^7.3 || ~8.0 || ~8.1"
     },
     "require-dev": {
         "doctrine/coding-standard": "^9.0",

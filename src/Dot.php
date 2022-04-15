@@ -160,7 +160,9 @@ final class Dot
     {
         try {
             return self::instanceOf($path, $array, $class, $pathDelimiter);
-        } catch (InvalidValue|MissingKey) { // phpcs:ignore
+        } catch (InvalidValue $e) {
+            return null;
+        } catch (MissingKey $e) {
             return null;
         }
     }
@@ -248,8 +250,12 @@ final class Dot
         return self::arrayOrNull($path, $array, $pathDelimiter) ?: $default;
     }
 
-    /** @param array<array-key, mixed> $array */
-    public static function valueAt(string $path, array $array, string $pathDelimiter = '.'): mixed
+    /**
+     * @param array<array-key, mixed> $array
+     *
+     * @return mixed
+     */
+    public static function valueAt(string $path, array $array, string $pathDelimiter = '.')
     {
         $keys = self::keys($path, $pathDelimiter);
         $currentValue = $array;
@@ -268,12 +274,16 @@ final class Dot
         return $currentValue;
     }
 
-    /** @param array<array-key, mixed> $array */
-    public static function valueOrNull(string $path, array $array, string $pathDelimiter = '.'): mixed
+    /**
+     * @param array<array-key, mixed> $array
+     *
+     * @return mixed|null
+     */
+    public static function valueOrNull(string $path, array $array, string $pathDelimiter = '.')
     {
         try {
             return self::valueAt($path, $array, $pathDelimiter);
-        } catch (MissingKey) {
+        } catch (MissingKey $e) {
             return null;
         }
     }

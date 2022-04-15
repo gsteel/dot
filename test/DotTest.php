@@ -16,7 +16,7 @@ use function sprintf;
 class DotTest extends TestCase
 {
     /** @var array<array-key, mixed> */
-    private array $input;
+    private $input;
 
     protected function setUp(): void
     {
@@ -31,7 +31,9 @@ class DotTest extends TestCase
                     'string' => 'string',
                     'null' => null,
                     'instance' => new Something(),
-                    'callable' => static fn (): string => 'Hey!',
+                    'callable' => static function (): string {
+                        return 'Hey!';
+                    },
                     'callable-array' => [Something::class, 'get'],
                     'array' => [
                         0 => 'a',
@@ -112,8 +114,12 @@ class DotTest extends TestCase
         Dot::valueAt('!', [], '!');
     }
 
-    /** @dataProvider foundValueProvider */
-    public function testValueAtCanReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
+    /**
+     * @param mixed $expect
+     *
+     * @dataProvider foundValueProvider
+     */
+    public function testValueAtCanReturnTheExpectedValue(string $path, $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueAt($path, $this->input, $delimiter));
     }
@@ -134,8 +140,12 @@ class DotTest extends TestCase
         Dot::valueOrNull('!', [], '!');
     }
 
-    /** @dataProvider foundValueProvider */
-    public function testThatValueOrNullWillReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
+    /**
+     * @param mixed $expect
+     *
+     * @dataProvider foundValueProvider
+     */
+    public function testThatValueOrNullWillReturnTheExpectedValue(string $path, $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueOrNull($path, $this->input, $delimiter));
     }
@@ -357,7 +367,9 @@ class DotTest extends TestCase
     {
         $expect = Dot::valueOrNull('a.b.callable', $this->input);
         self::assertIsCallable($expect);
-        $default = static fn (): string => 'Foo';
+        $default = static function (): string {
+            return 'Foo';
+        };
 
         self::assertSame($expect, Dot::callableDefault('a.b.callable', $this->input, $default));
         self::assertSame($default, Dot::callableDefault('a.b.nope', $this->input, $default));
