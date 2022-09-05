@@ -16,8 +16,8 @@ final class MissingKey extends InvalidArgumentException
             sprintf(
                 'The key "%s" does not exist in the input array. Requested path was "%s"',
                 $missingKey,
-                $requestedPath
-            )
+                $requestedPath,
+            ),
         );
     }
 }

@@ -157,7 +157,7 @@ class DotTest extends TestCase
         $this->expectExceptionMessage(sprintf(
             'The key "%s" does not exist in the input array. Requested path was "%s"',
             $failsAt,
-            $requestedPath
+            $requestedPath,
         ));
 
         Dot::valueAt($requestedPath, $this->input);
