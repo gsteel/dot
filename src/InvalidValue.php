@@ -18,7 +18,7 @@ final class InvalidValue extends UnexpectedValueException
             'The value at "%s" was expected to be "%s", but "%s" was found',
             $path,
             $expected,
-            gettype($value)
+            gettype($value),
         ));
     }
 }
