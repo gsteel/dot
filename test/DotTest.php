@@ -16,7 +16,7 @@ use function sprintf;
 class DotTest extends TestCase
 {
     /** @var array<array-key, mixed> */
-    private $input;
+    private array $input;
 
     protected function setUp(): void
     {
