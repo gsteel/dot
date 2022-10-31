@@ -114,12 +114,8 @@ class DotTest extends TestCase
         Dot::valueAt('!', [], '!');
     }
 
-    /**
-     * @param mixed $expect
-     *
-     * @dataProvider foundValueProvider
-     */
-    public function testValueAtCanReturnTheExpectedValue(string $path, $expect, string $delimiter): void
+    /** @dataProvider foundValueProvider */
+    public function testValueAtCanReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueAt($path, $this->input, $delimiter));
     }
@@ -140,12 +136,8 @@ class DotTest extends TestCase
         Dot::valueOrNull('!', [], '!');
     }
 
-    /**
-     * @param mixed $expect
-     *
-     * @dataProvider foundValueProvider
-     */
-    public function testThatValueOrNullWillReturnTheExpectedValue(string $path, $expect, string $delimiter): void
+    /** @dataProvider foundValueProvider */
+    public function testThatValueOrNullWillReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueOrNull($path, $this->input, $delimiter));
     }

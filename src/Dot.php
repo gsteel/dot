@@ -30,7 +30,7 @@ final class Dot
     }
 
     /** @param array<array-key, mixed> $array */
-    public static function integerOrNull(string $path, array $array, string $pathDelimiter = '.'): ?int
+    public static function integerOrNull(string $path, array $array, string $pathDelimiter = '.'): int|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
         if (! is_int($value)) {
@@ -58,7 +58,7 @@ final class Dot
     }
 
     /** @param array<array-key, mixed> $array */
-    public static function stringOrNull(string $path, array $array, string $pathDelimiter = '.'): ?string
+    public static function stringOrNull(string $path, array $array, string $pathDelimiter = '.'): string|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
         if (! is_string($value)) {
@@ -86,7 +86,7 @@ final class Dot
     }
 
     /** @param array<array-key, mixed> $array */
-    public static function floatOrNull(string $path, array $array, string $pathDelimiter = '.'): ?float
+    public static function floatOrNull(string $path, array $array, string $pathDelimiter = '.'): float|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
         if (! is_float($value)) {
@@ -114,7 +114,7 @@ final class Dot
     }
 
     /** @param array<array-key, mixed> $array */
-    public static function boolOrNull(string $path, array $array, string $pathDelimiter = '.'): ?bool
+    public static function boolOrNull(string $path, array $array, string $pathDelimiter = '.'): bool|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
         if (! is_bool($value)) {
@@ -156,13 +156,13 @@ final class Dot
      *
      * @template T
      */
-    public static function instanceOfOrNull(string $path, array $array, string $class, string $pathDelimiter = '.'): ?object
+    public static function instanceOfOrNull(string $path, array $array, string $class, string $pathDelimiter = '.'): object|null
     {
         try {
             return self::instanceOf($path, $array, $class, $pathDelimiter);
-        } catch (InvalidValue $e) {
+        } catch (InvalidValue) {
             return null;
-        } catch (MissingKey $e) {
+        } catch (MissingKey) {
             return null;
         }
     }
@@ -193,7 +193,7 @@ final class Dot
     }
 
     /** @param array<array-key, mixed> $array */
-    public static function callableOrNull(string $path, array $array, string $pathDelimiter = '.'): ?callable
+    public static function callableOrNull(string $path, array $array, string $pathDelimiter = '.'): callable|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
         if (! is_callable($value)) {
@@ -229,7 +229,7 @@ final class Dot
      *
      * @return array<array-key, mixed>|null
      */
-    public static function arrayOrNull(string $path, array $array, string $pathDelimiter = '.'): ?array
+    public static function arrayOrNull(string $path, array $array, string $pathDelimiter = '.'): array|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
         if (! is_array($value)) {
@@ -250,12 +250,8 @@ final class Dot
         return self::arrayOrNull($path, $array, $pathDelimiter) ?: $default;
     }
 
-    /**
-     * @param array<array-key, mixed> $array
-     *
-     * @return mixed
-     */
-    public static function valueAt(string $path, array $array, string $pathDelimiter = '.')
+    /** @param array<array-key, mixed> $array */
+    public static function valueAt(string $path, array $array, string $pathDelimiter = '.'): mixed
     {
         $keys = self::keys($path, $pathDelimiter);
         $currentValue = $array;
@@ -274,16 +270,12 @@ final class Dot
         return $currentValue;
     }
 
-    /**
-     * @param array<array-key, mixed> $array
-     *
-     * @return mixed|null
-     */
-    public static function valueOrNull(string $path, array $array, string $pathDelimiter = '.')
+    /** @param array<array-key, mixed> $array */
+    public static function valueOrNull(string $path, array $array, string $pathDelimiter = '.'): mixed
     {
         try {
             return self::valueAt($path, $array, $pathDelimiter);
-        } catch (MissingKey $e) {
+        } catch (MissingKey) {
             return null;
         }
     }
