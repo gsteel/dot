@@ -18,7 +18,10 @@ use function strlen;
 /** @psalm-immutable */
 final class Dot
 {
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function integer(string $path, array $array, string $pathDelimiter = '.'): int
     {
         $value = self::valueAt($path, $array, $pathDelimiter);
@@ -29,7 +32,10 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function integerOrNull(string $path, array $array, string $pathDelimiter = '.'): int|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
@@ -40,13 +46,19 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function integerDefault(string $path, array $array, int $default, string $pathDelimiter = '.'): int
     {
         return self::integerOrNull($path, $array, $pathDelimiter) ?: $default;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function string(string $path, array $array, string $pathDelimiter = '.'): string
     {
         $value = self::valueAt($path, $array, $pathDelimiter);
@@ -57,7 +69,10 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function stringOrNull(string $path, array $array, string $pathDelimiter = '.'): string|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
@@ -68,13 +83,19 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function stringDefault(string $path, array $array, string $default, string $pathDelimiter = '.'): string
     {
         return self::stringOrNull($path, $array, $pathDelimiter) ?: $default;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function float(string $path, array $array, string $pathDelimiter = '.'): float
     {
         $value = self::valueAt($path, $array, $pathDelimiter);
@@ -85,7 +106,10 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function floatOrNull(string $path, array $array, string $pathDelimiter = '.'): float|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
@@ -96,13 +120,19 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function floatDefault(string $path, array $array, float $default, string $pathDelimiter = '.'): float
     {
         return self::floatOrNull($path, $array, $pathDelimiter) ?: $default;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function bool(string $path, array $array, string $pathDelimiter = '.'): bool
     {
         $value = self::valueAt($path, $array, $pathDelimiter);
@@ -113,7 +143,10 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function boolOrNull(string $path, array $array, string $pathDelimiter = '.'): bool|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
@@ -124,7 +157,10 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function boolDefault(string $path, array $array, bool $default, string $pathDelimiter = '.'): bool
     {
         return self::boolOrNull($path, $array, $pathDelimiter) ?: $default;
@@ -133,6 +169,7 @@ final class Dot
     /**
      * @param array<array-key, mixed> $array
      * @param class-string<T>         $class
+     * @param non-empty-string        $pathDelimiter
      *
      * @return T
      *
@@ -151,6 +188,7 @@ final class Dot
     /**
      * @param array<array-key, mixed> $array
      * @param class-string<T>         $class
+     * @param non-empty-string        $pathDelimiter
      *
      * @return T|null
      *
@@ -171,6 +209,7 @@ final class Dot
      * @param array<array-key, mixed> $array
      * @param class-string<T>         $class
      * @param T                       $default
+     * @param non-empty-string        $pathDelimiter
      *
      * @return T
      *
@@ -181,7 +220,10 @@ final class Dot
         return self::instanceOfOrNull($path, $array, $class, $pathDelimiter) ?: $default;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param array<array-key, mixed> $array
+     * @param non-empty-string        $pathDelimiter
+     */
     public static function callable(string $path, array $array, string $pathDelimiter = '.'): callable
     {
         $value = self::valueAt($path, $array, $pathDelimiter);
@@ -192,7 +234,10 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function callableOrNull(string $path, array $array, string $pathDelimiter = '.'): callable|null
     {
         $value = self::valueOrNull($path, $array, $pathDelimiter);
@@ -203,7 +248,10 @@ final class Dot
         return $value;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param array<array-key, mixed> $array
+     * @param non-empty-string        $pathDelimiter
+     */
     public static function callableDefault(string $path, array $array, callable $default, string $pathDelimiter = '.'): callable
     {
         return self::callableOrNull($path, $array, $pathDelimiter) ?: $default;
@@ -211,6 +259,7 @@ final class Dot
 
     /**
      * @param array<array-key, mixed> $array
+     * @param non-empty-string        $pathDelimiter
      *
      * @return array<array-key, mixed>
      */
@@ -226,6 +275,7 @@ final class Dot
 
     /**
      * @param array<array-key, mixed> $array
+     * @param non-empty-string        $pathDelimiter
      *
      * @return array<array-key, mixed>|null
      */
@@ -242,6 +292,7 @@ final class Dot
     /**
      * @param array<array-key, mixed> $array
      * @param array<array-key, mixed> $default
+     * @param non-empty-string        $pathDelimiter
      *
      * @return array<array-key, mixed>
      */
@@ -250,7 +301,10 @@ final class Dot
         return self::arrayOrNull($path, $array, $pathDelimiter) ?: $default;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param non-empty-string        $pathDelimiter
+     * @param array<array-key, mixed> $array
+     */
     public static function valueAt(string $path, array $array, string $pathDelimiter = '.'): mixed
     {
         $keys = self::keys($path, $pathDelimiter);
@@ -270,7 +324,10 @@ final class Dot
         return $currentValue;
     }
 
-    /** @param array<array-key, mixed> $array */
+    /**
+     * @param array<array-key, mixed> $array
+     * @param non-empty-string        $pathDelimiter
+     */
     public static function valueOrNull(string $path, array $array, string $pathDelimiter = '.'): mixed
     {
         try {
@@ -280,7 +337,11 @@ final class Dot
         }
     }
 
-    /** @return list<string> */
+    /**
+     * @param non-empty-string $pathDelimiter
+     *
+     * @return list<string>
+     */
     private static function keys(string $path, string $pathDelimiter = '.'): array
     {
         if (strlen($path) === 0 || $path === $pathDelimiter) {
