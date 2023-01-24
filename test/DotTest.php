@@ -63,7 +63,7 @@ class DotTest extends TestCase
         ];
     }
 
-    /** @return array<array-key, array{0: string, 1: mixed, 2: string}> */
+    /** @return array<array-key, array{0: string, 1: mixed, 2: non-empty-string}> */
     public function foundValueProvider(): array
     {
         return [
@@ -114,7 +114,11 @@ class DotTest extends TestCase
         Dot::valueAt('!', [], '!');
     }
 
-    /** @dataProvider foundValueProvider */
+    /**
+     * @param non-empty-string $delimiter
+     *
+     * @dataProvider foundValueProvider
+     */
     public function testValueAtCanReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueAt($path, $this->input, $delimiter));
@@ -136,7 +140,11 @@ class DotTest extends TestCase
         Dot::valueOrNull('!', [], '!');
     }
 
-    /** @dataProvider foundValueProvider */
+    /**
+     * @param non-empty-string $delimiter
+     *
+     * @dataProvider foundValueProvider
+     */
     public function testThatValueOrNullWillReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueOrNull($path, $this->input, $delimiter));
