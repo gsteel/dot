@@ -64,7 +64,7 @@ class DotTest extends TestCase
     }
 
     /** @return array<array-key, array{0: string, 1: mixed, 2: non-empty-string}> */
-    public function foundValueProvider(): array
+    public static function foundValueProvider(): array
     {
         return [
             ['a.b.int', 1, '.'],
@@ -85,7 +85,7 @@ class DotTest extends TestCase
     }
 
     /** @return array<array-key, array{0: string, 1: string}> */
-    public function missingPathProvider(): array
+    public static function missingPathProvider(): array
     {
         return [
             // request path, fails at
