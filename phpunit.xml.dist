@@ -3,12 +3,18 @@
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          cacheResultFile=".phpunit.result.cache"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnSkippedTests="true"
+         displayDetailsOnIncompleteTests="true"
          colors="true">
-    <coverage>
+    <source>
         <include>
             <directory suffix="">./src</directory>
         </include>
-    </coverage>
+    </source>
     <testsuites>
         <testsuite name="Tests">
             <directory>./test/</directory>
