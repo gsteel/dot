@@ -1,10 +1,9 @@
 # Dot
+
 [![Continuous Integration](https://github.com/gsteel/dot/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/gsteel/dot/actions/workflows/continuous-integration.yml)
 [![codecov](https://codecov.io/gh/gsteel/dot/branch/main/graph/badge.svg?token=TjLKu5FkjA)](https://codecov.io/gh/gsteel/dot)
 [![psalm coverage](https://shepherd.dev/github/gsteel/dot/coverage.svg)](https://shepherd.dev/github/gsteel/dot)
 [![psalm level](https://shepherd.dev/github/gsteel/dot/level.svg)](https://shepherd.dev/github/gsteel/dot)
-
-
 
 Retrieve strongly typed values from deeply nested arrays.
 
@@ -12,7 +11,8 @@ This library will not set any values or manipulate data structures in any way. I
 
 ## Usage
 
-### Give me a typed value or throw an exception:
+### Give me a typed value or throw an exception
+
 ```php
 
 use GSteel\Dot;
@@ -123,6 +123,6 @@ $params = [
 
 Yes. Here's a few:
 
- - [dflydev/dflydev-dot-access-data](https://github.com/dflydev/dflydev-dot-access-data)
- - [adbario/php-dot-notation](https://github.com/adbario/php-dot-notation)
- - https://packagist.org/?query=array%20dot
+- [dflydev/dflydev-dot-access-data](https://github.com/dflydev/dflydev-dot-access-data)
+- [adbario/php-dot-notation](https://github.com/adbario/php-dot-notation)
+- https://packagist.org/?query=array%20dot
