@@ -8,6 +8,7 @@ use GSteel\Dot;
 use GSteel\EmptyPathError;
 use GSteel\InvalidValue;
 use GSteel\MissingKey;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function assert;
@@ -29,6 +30,8 @@ class DotTest extends TestCase
                     'bool' => true,
                     'float' => 2.5,
                     'string' => 'string',
+                    'empty-string' => '',
+                    'whitespace-string' => ' ',
                     'null' => null,
                     'instance' => new Something(),
                     'callable' => static function (): string {
@@ -63,7 +66,7 @@ class DotTest extends TestCase
         ];
     }
 
-    /** @return array<array-key, array{0: string, 1: mixed, 2: non-empty-string}> */
+    /** @return array<array-key, array{0: non-empty-string, 1: mixed, 2: non-empty-string}> */
     public static function foundValueProvider(): array
     {
         return [
@@ -84,7 +87,7 @@ class DotTest extends TestCase
         ];
     }
 
-    /** @return array<array-key, array{0: string, 1: string}> */
+    /** @return array<array-key, array{0: non-empty-string, 1: non-empty-string}> */
     public static function missingPathProvider(): array
     {
         return [
@@ -115,10 +118,10 @@ class DotTest extends TestCase
     }
 
     /**
+     * @param non-empty-string $path
      * @param non-empty-string $delimiter
-     *
-     * @dataProvider foundValueProvider
      */
+    #[DataProvider('foundValueProvider')]
     public function testValueAtCanReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueAt($path, $this->input, $delimiter));
@@ -140,17 +143,14 @@ class DotTest extends TestCase
         Dot::valueOrNull('!', [], '!');
     }
 
-    /**
-     * @param non-empty-string $delimiter
-     *
-     * @dataProvider foundValueProvider
-     */
+    /** @param non-empty-string $delimiter */
+    #[DataProvider('foundValueProvider')]
     public function testThatValueOrNullWillReturnTheExpectedValue(string $path, mixed $expect, string $delimiter): void
     {
         self::assertEquals($expect, Dot::valueOrNull($path, $this->input, $delimiter));
     }
 
-    /** @dataProvider missingPathProvider */
+    #[DataProvider('missingPathProvider')]
     public function testMissingKeyIsThrownWhenTheKeyIsNotSet(string $requestedPath, string $failsAt): void
     {
         $this->expectException(MissingKey::class);
@@ -163,7 +163,7 @@ class DotTest extends TestCase
         Dot::valueAt($requestedPath, $this->input);
     }
 
-    /** @dataProvider missingPathProvider */
+    #[DataProvider('missingPathProvider')]
     public function testMissingKeyIsNotThrownFromValueOrNull(string $requestedPath): void
     {
         self::assertNull(Dot::valueOrNull($requestedPath, $this->input));
@@ -403,5 +403,27 @@ class DotTest extends TestCase
         $default = ['foo' => 'bar'];
         self::assertSame($expect, Dot::arrayDefault('a.b.array', $this->input, $default));
         self::assertSame($default, Dot::arrayDefault('a.b.nope', $this->input, $default));
+    }
+
+    public function testNonEmptyString(): void
+    {
+        self::assertSame('string', Dot::nonEmptyString('a.b.string', $this->input));
+    }
+
+    /** @return array<array-key, array{0: non-empty-string}> */
+    public static function emptyStringPaths(): array
+    {
+        return [
+            ['a.b.empty-string'],
+            ['a.b.whitespace-string'],
+        ];
+    }
+
+    /** @param non-empty-string $path */
+    #[DataProvider('emptyStringPaths')]
+    public function testNotNonEmptyString(string $path): void
+    {
+        $this->expectException(InvalidValue::class);
+        Dot::nonEmptyString($path, $this->input);
     }
 }

@@ -14,6 +14,7 @@ use function is_float;
 use function is_int;
 use function is_string;
 use function strlen;
+use function trim;
 
 /** @psalm-immutable */
 final class Dot
@@ -64,6 +65,23 @@ final class Dot
         $value = self::valueAt($path, $array, $pathDelimiter);
         if (! is_string($value)) {
             throw InvalidValue::for($path, 'string', $value);
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param non-empty-string        $path
+     * @param array<array-key, mixed> $array
+     * @param non-empty-string        $pathDelimiter
+     *
+     * @return non-empty-string
+     */
+    public static function nonEmptyString(string $path, array $array, string $pathDelimiter = '.'): string
+    {
+        $value = self::string($path, $array, $pathDelimiter);
+        if ($value === '' || trim($value) === '') {
+            throw InvalidValue::for($path, 'non-empty-string', $value);
         }
 
         return $value;
