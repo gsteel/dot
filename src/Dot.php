@@ -53,7 +53,7 @@ final class Dot
      */
     public static function integerDefault(string $path, array $array, int $default, string $pathDelimiter = '.'): int
     {
-        return self::integerOrNull($path, $array, $pathDelimiter) ?: $default;
+        return self::integerOrNull($path, $array, $pathDelimiter) ?? $default;
     }
 
     /**
@@ -107,7 +107,7 @@ final class Dot
      */
     public static function stringDefault(string $path, array $array, string $default, string $pathDelimiter = '.'): string
     {
-        return self::stringOrNull($path, $array, $pathDelimiter) ?: $default;
+        return self::stringOrNull($path, $array, $pathDelimiter) ?? $default;
     }
 
     /**
@@ -144,7 +144,7 @@ final class Dot
      */
     public static function floatDefault(string $path, array $array, float $default, string $pathDelimiter = '.'): float
     {
-        return self::floatOrNull($path, $array, $pathDelimiter) ?: $default;
+        return self::floatOrNull($path, $array, $pathDelimiter) ?? $default;
     }
 
     /**
@@ -272,7 +272,7 @@ final class Dot
      */
     public static function callableDefault(string $path, array $array, callable $default, string $pathDelimiter = '.'): callable
     {
-        return self::callableOrNull($path, $array, $pathDelimiter) ?: $default;
+        return self::callableOrNull($path, $array, $pathDelimiter) ?? $default;
     }
 
     /**
@@ -316,7 +316,7 @@ final class Dot
      */
     public static function arrayDefault(string $path, array $array, array $default, string $pathDelimiter = '.'): array
     {
-        return self::arrayOrNull($path, $array, $pathDelimiter) ?: $default;
+        return self::arrayOrNull($path, $array, $pathDelimiter) ?? $default;
     }
 
     /**
