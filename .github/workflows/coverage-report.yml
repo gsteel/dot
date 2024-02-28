@@ -28,7 +28,7 @@ jobs:
           coverage: pcov
           ini-values: pcov.enabled=1
 
-      - uses: "ramsey/composer-install@2.2.0"
+      - uses: "ramsey/composer-install@2.3.0"
         with:
           composer-options: "${{ matrix.composer-options }}"
 
