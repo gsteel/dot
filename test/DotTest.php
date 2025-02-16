@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use function assert;
 use function sprintf;
 
-class DotTest extends TestCase
+final class DotTest extends TestCase
 {
     /** @var array<array-key, mixed> */
     private array $input;
