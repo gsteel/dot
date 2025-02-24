@@ -8,6 +8,7 @@ use GSteel\Dot;
 use GSteel\EmptyPathError;
 use GSteel\InvalidValue;
 use GSteel\MissingKey;
+use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -19,6 +20,7 @@ final class DotTest extends TestCase
     /** @var array<array-key, mixed> */
     private array $input;
 
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
