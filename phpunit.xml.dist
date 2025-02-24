@@ -6,6 +6,7 @@
          displayDetailsOnTestsThatTriggerNotices="true"
          displayDetailsOnTestsThatTriggerErrors="true"
          displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnPhpunitDeprecations="true"
          displayDetailsOnSkippedTests="true"
          displayDetailsOnIncompleteTests="true"
          failOnNotice="true"

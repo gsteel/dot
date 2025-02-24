@@ -13,7 +13,13 @@
     <file>test</file>
 
     <!-- Inherit rules from Doctrine Coding Standard -->
-    <rule ref="Doctrine" />
+    <rule ref="Doctrine">
+        <!-- Disable deprecated sniff -->
+        <exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat" />
+    </rule>
+
+    <!-- Replacement Rule for UnionTypeHintFormat -->
+    <rule ref="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat" />
 
     <rule ref="Generic.Formatting.MultipleStatementAlignment.NotSame">
         <severity>0</severity>
