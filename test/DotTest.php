@@ -165,7 +165,7 @@ final class DotTest extends TestCase
         Dot::valueAt($requestedPath, $this->input);
     }
 
-    #[DataProvider('missingPathProvider')]
+    #[DataProvider('missingPathProvider', false)]
     public function testMissingKeyIsNotThrownFromValueOrNull(string $requestedPath): void
     {
         self::assertNull(Dot::valueOrNull($requestedPath, $this->input));
