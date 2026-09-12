@@ -37,10 +37,10 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^14.0.0",
-        "phpunit/phpunit": "^12.5.29",
-        "psalm/plugin-phpunit": "^0.19.7",
-        "squizlabs/php_codesniffer": "^4.0.1",
-        "vimeo/psalm": "^6.16.1"
+        "phpunit/phpunit": "^12.5.35",
+        "psalm/plugin-phpunit": "^0.20.2",
+        "squizlabs/php_codesniffer": "^4.0.4",
+        "vimeo/psalm": "^6.17.1"
     },
     "autoload": {
         "psr-4": {
