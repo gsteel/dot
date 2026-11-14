@@ -38,7 +38,7 @@
     "require-dev": {
         "doctrine/coding-standard": "^14.0.0",
         "phpunit/phpunit": "^12.5.44",
-        "psalm/plugin-phpunit": "^0.22.2",
+        "psalm/plugin-phpunit": "^1.2.0",
         "squizlabs/php_codesniffer": "^4.0.4",
         "vimeo/psalm": "^6.20.11"
     },
