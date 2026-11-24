@@ -40,7 +40,7 @@
         "phpunit/phpunit": "^12.5.45",
         "psalm/plugin-phpunit": "^0.22.2",
         "squizlabs/php_codesniffer": "^4.0.4",
-        "vimeo/psalm": "^6.21.3"
+        "vimeo/psalm": "^6.21.4"
     },
     "autoload": {
         "psr-4": {
